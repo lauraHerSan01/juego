@@ -1,45 +1,30 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
-    [Header("Configuración de Movimiento")]
-    public float velocidadMovimiento = 8f; 
-    public float limiteLateralX = 4f;
+    public float speed = 7f;
 
-    private bool estaVivo = true;
+    // Límites del movimiento en X
+    public float leftLimit = 3.3f;
+    public float rightLimit = 6.3f;
 
     void Update()
     {
-        if (!estaVivo) return;
+        float moveX = 0f;
 
-        float inputX = Input.GetAxis("Horizontal");
+        // Flechas izquierda/derecha
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            moveX = -speed;
 
-        float nuevaPosicionX = transform.position.x + inputX * velocidadMovimiento * Time.deltaTime;
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            moveX = speed;
 
-        nuevaPosicionX = Mathf.Clamp(nuevaPosicionX, -limiteLateralX, limiteLateralX);
+        // Movimiento con deltaTime
+        Vector3 newPos = transform.position + new Vector3(moveX * Time.deltaTime, 0, 0);
 
-        transform.position = new Vector3(nuevaPosicionX, transform.position.y, transform.position.z);
-    }
+        // Límite exacto entre 3.3 y 6.3
+        newPos.x = Mathf.Clamp(newPos.x, leftLimit, rightLimit);
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!estaVivo) return; 
-
-        if (collision.gameObject.CompareTag("Obstaculo"))
-        {
-            Debug.Log("¡Choque con Obstáculo! Juego Terminado.");
-            GameOver();
-        }
-    }
-
-
-    void GameOver()
-    {
-        estaVivo = false;
-
-        MoverTramo.velocidadGlobal = 0f;
-
-        Time.timeScale = 0f;
-
+        transform.position = newPos;
     }
 }

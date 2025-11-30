@@ -42,5 +42,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Decoracion
+    uniqueID: 4285757337
+    locked: 0
+  - name: Casa
+    uniqueID: 3070718119
+    locked: 0
+  - name: Obstaculo
+    uniqueID: 3103790961
+    locked: 0
+  - name: Player
+    uniqueID: 1449648275
+    locked: 0
   m_RenderingLayers:
   - Default
