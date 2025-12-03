@@ -2624,7 +2624,7 @@ GameObject:
   - component: {fileID: 1358872768042345157}
   m_Layer: 0
   m_Name: 'Casa roja chica '
-  m_TagString: Untagged
+  m_TagString: Casa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

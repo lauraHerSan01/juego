@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
+  - Casa
+  - Decoracion
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1449648275
+    locked: 0
+  - name: Periodico
+    uniqueID: 2208963415
     locked: 0
   m_RenderingLayers:
   - Default

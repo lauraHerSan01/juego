@@ -2264,7 +2264,7 @@ GameObject:
   - component: {fileID: 8411577848635826632}
   m_Layer: 0
   m_Name: Casa naranja chica
-  m_TagString: Untagged
+  m_TagString: Casa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
