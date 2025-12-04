@@ -5,17 +5,37 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    public TMP_Text scoreText;
-    private int score = 0;
+    [HideInInspector] public int score = 0;
+    public TextMeshProUGUI scoreText; // asignar en la escena del juego
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        score = 0;
+        UpdateUI();
     }
 
     public void AddPoint()
     {
         score++;
-        scoreText.text = "Puntos: " + score;
+        UpdateUI();
+
+        // Guardar puntuación actual y record
+        PlayerPrefs.SetInt("Puntuacion", score);
+
+        int record = PlayerPrefs.GetInt("Record", 0);
+        if (score > record)
+            PlayerPrefs.SetInt("Record", score);
+    }
+
+    void UpdateUI()
+    {
+        if (scoreText != null)
+            scoreText.text = "Puntos: " + score;
     }
 }

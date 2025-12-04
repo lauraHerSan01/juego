@@ -761,7 +761,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 7
   m_TargetDisplay: 0
 --- !u!224 &1232831369
 RectTransform:
@@ -1157,6 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be1a7397141261419a164527af6d51d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  isGameOver: 0
 --- !u!4 &1497793869
 Transform:
   m_ObjectHideFlags: 0
@@ -1201,6 +1202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726cd70a44c212a47947c6796d5cf9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  score: 0
   scoreText: {fileID: 1073144881}
 --- !u!4 &1503493765
 Transform:

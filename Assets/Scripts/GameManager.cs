@@ -1,18 +1,15 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-    public bool isGameOver { get; private set; }
+    public static GameManager Instance;
+    public bool isGameOver = false;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-        isGameOver = false;
-        Time.timeScale = 1f;
     }
 
     public void GameOver()
@@ -20,25 +17,23 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
         isGameOver = true;
 
-        // Pausar juego
-        Time.timeScale = 0f;
+        // Guardar la puntuación actual como "Puntuacion" (por si algo no la guardó antes)
+        if (ScoreManager.Instance != null)
+            PlayerPrefs.SetInt("Puntuacion", ScoreManager.Instance.score);
 
-        // (Opcional) Puedes mostrar UI GameOver aquí
-        Debug.Log("GAME OVER");
+        // Actualizar record (seguro)
+        int current = PlayerPrefs.GetInt("Puntuacion", 0);
+        int record = PlayerPrefs.GetInt("Record", 0);
+        if (current > record) PlayerPrefs.SetInt("Record", current);
 
-        // Desactivar spawners en la escena si quieres (busca por tag "Spawner")
-        var spawners = FindObjectsOfType<MonoBehaviour>();
-        foreach (var s in spawners)
-        {
-            if (s.GetType().Name.Contains("Spawner"))
-                s.enabled = false;
-        }
+        // Cargar la escena GameOver (asegúrate que la escena "GameOver" está en Build Settings)
+        SceneManager.LoadScene("GameOver");
     }
 
-    // Reiniciar (llamar desde UI botón o debug)
+    // Opción para reiniciar (desde UI)
     public void Restart()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        isGameOver = false;
+        SceneManager.LoadScene("Juego");
     }
 }

@@ -24,13 +24,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            // Llamar game over centralizado
-            if (GameManager.Instance != null) GameManager.Instance.GameOver();
-            else
-            {
-                Debug.Log("GAME OVER (no GameManager presente)");
-                Time.timeScale = 0f;
-            }
+            GameManager.Instance.GameOver();
         }
     }
 }
