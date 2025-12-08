@@ -6,7 +6,11 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     [HideInInspector] public int score = 0;
-    public TextMeshProUGUI scoreText; // asignar en la escena del juego
+    public TextMeshProUGUI scoreText;
+
+    [Header("🔊 Sonido de punto")]
+    public AudioSource audioSource;   // arrastra aquí tu AudioSource
+    public AudioClip pointSound;      // arrastra el sonido aquí
 
     private void Awake()
     {
@@ -24,6 +28,12 @@ public class ScoreManager : MonoBehaviour
     {
         score++;
         UpdateUI();
+
+        // ▶ Reproducir sonido
+        if (audioSource != null && pointSound != null)
+        {
+            audioSource.PlayOneShot(pointSound);
+        }
 
         // Guardar puntuación actual y record
         PlayerPrefs.SetInt("Puntuacion", score);

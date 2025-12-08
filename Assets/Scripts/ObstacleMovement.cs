@@ -9,7 +9,8 @@ public class ObstacleMovement : MonoBehaviour
     {
         if (GameManager.Instance != null && GameManager.Instance.isGameOver) return;
 
-        transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        float speed = GlobalSpeedManager.Instance.globalSpeed;
+        transform.Translate(Vector3.down * speed * Time.deltaTime);
 
         if (transform.position.y < destroyY)
             Destroy(gameObject);

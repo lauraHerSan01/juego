@@ -6,6 +6,7 @@ public class DecoracionMovimiento : MonoBehaviour
 
     void Update()
     {
+        float speed = GlobalSpeedManager.Instance.globalSpeed;
         transform.position += Vector3.down * speed * Time.deltaTime;
 
         if (transform.position.y < -15f)
